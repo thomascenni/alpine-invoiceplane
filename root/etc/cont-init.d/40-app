@@ -1,0 +1,42 @@
+#!/usr/bin/with-contenv bash
+
+# application specific configurations
+FILE=/config/www/invoiceplane/index.php
+if [ -f "$FILE" ]; then
+    echo "InvoicePlane Installation found";
+    # remove the possibility to execute setup once more DISABLE_SETUP=true
+    sed -i "s/DISABLE_SETUP=false/DISABLE_SETUP=true/g" /config/www/invoiceplane/ipconfig.php
+    echo "Setup disabled."
+else 
+    echo "Setting up InvoicePlane at /config/www/invoiceplane";
+    # create our folders/files
+    mkdir -p \
+        /config/www/invoiceplane \
+        /config/log/invoiceplane
+
+    # install InvoicePlane
+    unzip -q ${INVOICEPLANE_SRC} -d /config/www/invoiceplane
+
+    touch /config/log/invoiceplane/{access,error}_invoiceplane_log
+
+    # db config
+    mv /config/www/invoiceplane/ipconfig.php.example /config/www/invoiceplane/ipconfig.php
+
+    # update variables
+    sed -i "s/IP_URL=/IP_URL=${IP_URL//\//\\/}/g" /config/www/invoiceplane/ipconfig.php
+    sed -i "s/DB_HOSTNAME=/DB_HOSTNAME=${DB_HOSTNAME}/g" /config/www/invoiceplane/ipconfig.php
+    sed -i "s/DB_USERNAME=/DB_USERNAME=${DB_USERNAME}/g" /config/www/invoiceplane/ipconfig.php
+    sed -i "s/DB_PASSWORD=/DB_PASSWORD=${DB_PASSWORD}/g" /config/www/invoiceplane/ipconfig.php
+    sed -i "s/DB_DATABASE=/DB_DATABASE=${DB_DATABASE}/g" /config/www/invoiceplane/ipconfig.php
+    sed -i "s/DB_PORT=/DB_PORT=${DB_PORT}/g" /config/www/invoiceplane/ipconfig.php
+    sed -i "s/REMOVE_INDEXPHP=false/REMOVE_INDEXPHP=true/g" /config/www/invoiceplane/ipconfig.php
+fi
+
+
+# permissions
+chown -R alpine:alpine \
+    /config \
+    /var/tmp/nginx \
+    /config/www/invoiceplane
+
+echo "Done!";

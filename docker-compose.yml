@@ -1,0 +1,34 @@
+version: "3.3"
+
+volumes:
+    mysql-data:
+    storage:
+    config:
+
+services:
+    db:
+        image: woahbase/alpine-mysql:x86_64
+        ports:
+            - "3306:3306"
+        volumes:
+            - mysql-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PWD: "insecurepassword"
+            MYSQL_USER: "invoiceplane"
+            MYSQL_USER_PWD: "invoiceplane"
+            MYSQL_USER_DB: "invoiceplane"
+
+    app:
+        image: "thomascenni/alpine-invoiceplane:v1.5.11"
+        ports:
+            - "80:80"
+        volumes:
+            - storage:/storage
+            - config:/config
+        environment:
+            IP_URL: "http://localhost"
+            DB_HOSTNAME: db
+            DB_USERNAME: "invoiceplane"
+            DB_PASSWORD: "invoiceplane"
+            DB_DATABASE: "invoiceplane"
+            DB_PORT: "3306"
