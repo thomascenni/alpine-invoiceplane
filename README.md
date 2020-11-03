@@ -1,4 +1,4 @@
-## Container for InvoicePlane running on Alpine Linux + S6 + MySQL/MariaDB
+## Container for InvoicePlane running on Alpine Linux + S6.
 
 This image is based on the awesome work of [Woahbase](https://github.com/woahbase), using [alpine-php](https://github.com/woahbase/alpine-php) as a starting point. PHP7 and NGINX included.
 
