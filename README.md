@@ -18,9 +18,9 @@ docker run --rm -it \
     -e DB_PORT=3306 \
     -e IP_URL="http://localhost" \
     -p 80:80 \
-    -v invoiceplane-storage:/storage \
-    -v invoiceplane-config:/config \
-    alpine-invoiceplane:v1.5.11
+    -v storage:/storage \
+    -v config:/config \
+    thomascenni/alpine-invoiceplane:v1.5.11
 ```
 
 or use the [docker-compose.yml](docker-compose.yml) provided, which contains also a alpine-mysql instance.
