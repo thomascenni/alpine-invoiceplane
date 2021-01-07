@@ -23,4 +23,4 @@ docker run --rm -it \
     thomascenni/alpine-invoiceplane:v1.5.11
 ```
 
-or use the [docker-compose.yml](docker-compose.yml) provided, which contains also a alpine-mysql instance.
+or use the [docker-compose.yml](https://raw.githubusercontent.com/thomascenni/alpine-invoiceplane/master/docker-compose.yml) provided, which contains also a alpine-mysql instance.
