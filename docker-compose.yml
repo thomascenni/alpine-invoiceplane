@@ -7,7 +7,7 @@ volumes:
 
 services:
     db:
-        image: woahbase/alpine-mysql:x86_64
+        image: woahbase/alpine-mysql:10.11.8
         ports:
             - "3306:3306"
         volumes:
@@ -19,7 +19,7 @@ services:
             MYSQL_USER_DB: "invoiceplane"
 
     app:
-        image: "thomascenni/alpine-invoiceplane:v1.5.11"
+        image: "thomascenni/alpine-invoiceplane:v1.6.2"
         ports:
             - "80:80"
         volumes:

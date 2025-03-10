@@ -2,7 +2,7 @@ captainVersion: 4
 
 services:
     $$cap_appname-db:
-        image: woahbase/alpine-mysql:x86_64
+        image:  woahbase/alpine-mysql:10.11.8
         volumes:
             - $$cap_appname-mysql-data:/var/lib/mysql
         environment:
@@ -14,7 +14,7 @@ services:
             notExposeAsWebApp: "true"
 
     $$cap_appname:
-        image: "thomascenni/alpine-invoiceplane:v1.5.11"
+        image: "thomascenni/alpine-invoiceplane:v1.6.2"
         volumes:
             - $$cap_appname-storage:/storage
             - $$cap_appname-config:/config

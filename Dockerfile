@@ -1,9 +1,9 @@
-FROM woahbase/alpine-php:x86_64
+FROM woahbase/alpine-php:8.2.27
 
 LABEL maintainer="hello@thomascenni.com"
-LABEL version="v1.5.11"
+LABEL version="v1.6.2"
 
-ARG VERSION="v1.5.11"
+ARG VERSION="v1.6.2"
 ENV INVOICEPLANE_SRC=/opt/invoiceplane/invoiceplane.zip
 
 ENV IP_URL="http://localhost" \
@@ -20,26 +20,26 @@ RUN set -xe \
     && apk add --no-cache --purge -uU \
         curl \
         unzip \
-        php7-ctype \
-        php7-bcmath \
-        php7-dom \
-        php7-gd \
-    	php7-mysqli \
-    	php7-mysqlnd \
-    	php7-openssl \
-    	php7-pdo_mysql \
-    	php7-fileinfo \
-    	php7-posix \
-    	php7-session \
-    	php7-tokenizer \
-    	php7-xml \
-    	php7-zip \
-    	php7-zlib \
-        php7-exif \
-        php7-simplexml \
-        php7-xmlreader \
-        php7-xmlwriter \
-        php7-gmp \
+        php82-ctype \
+        php82-bcmath \
+        php82-dom \
+        php82-gd \
+    	php82-mysqli \
+    	php82-mysqlnd \
+    	php82-openssl \
+    	php82-pdo_mysql \
+    	php82-fileinfo \
+    	php82-posix \
+    	php82-session \
+    	php82-tokenizer \
+    	php82-xml \
+    	php82-zip \
+    	php82-zlib \
+        php82-exif \
+        php82-simplexml \
+        php82-xmlreader \
+        php82-xmlwriter \
+        php82-gmp \
     && mkdir -p /opt/invoiceplane \
     && echo "InvoicePlane version: ${VERSION}" > /opt/invoiceplane/version \
     && curl -o ${INVOICEPLANE_SRC} -SL "https://github.com/InvoicePlane/InvoicePlane/releases/download/${VERSION}/${VERSION}.zip" \    
